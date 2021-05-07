@@ -2,8 +2,8 @@ import json
 import os, sys
 import numpy as np
 sys.path.append("/home/haythem/Desktop/Work/training/chatbot/")
-from utils import preproces_text
-
+from utils import preproces_text,bag_of_words
+from torch.utils.data import Dataset,DataLoader
 with open("intents.json", "r") as file:
     intents = json.load(file)
 
@@ -28,3 +28,16 @@ for (pattern_sentence,tag) in data:
 
 X_train=np.array(X_train)
 y_train=np.array(y_train)
+class chatbotdata(Dataset):
+    def __init__(self):
+        self.nb_samples=len(X_train)
+        self.xdata=X_train
+        self.ydata=y_train
+    def __getitem__(self, index):
+        return(self.xdata[index],self.ydata[index])
+    def __len__(self):
+        return(self.nb_samples)
+
+batch_size=8
+
+Chatbot_data=DataLoader(chatbotdata(),batch_size,shuffle=True)

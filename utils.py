@@ -9,6 +9,12 @@ nltk.download('wordnet')
 nltk.download('stopwords')
 stop_words=list(stopwords.words('english'))
 
+def bag_of_words(sentence,all_words):
+    """
+    Function that creates the bag of words embeeding vector for a given sentence
+    """
+    pass
+
 def preproces_text(sentence):
     """
     Function that preprocess input sentence: tokenize, lowwer the words and removes speacial caracters from each sentence

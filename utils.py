@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 from nltk import word_tokenize, sent_tokenize
 from nltk.stem import LancasterStemmer, WordNetLemmatizer
 
-nltk.download("punkt")
-nltk.download("wordnet")
-nltk.download("stopwords")
+# nltk.download("punkt")
+# nltk.download("wordnet")
+# nltk.download("stopwords")
 stop_words = list(stopwords.words("english"))
 
 
@@ -15,8 +15,8 @@ def bag_of_words(sentence, all_words):
     """
     Function that creates the bag of words embeeding vector for a given sentence
     """
-    bag=np.zeros(len(all_words))
-    for (index,word) in enumerate(sentence):
+    bag = np.zeros(len(all_words))
+    for (index, word) in enumerate(sentence):
         if word in all_words:
             bag[index] = 1
     return bag
@@ -35,11 +35,7 @@ def preproces_text(sentence):
     stemmer = LancasterStemmer()
     new_sentence = []
     for word in sentence:
-        if (
-            word.lower() not in stop_words
-            and word.isnumeric() == False
-            and word.strip() != ""
-        ):
+        if word.lower() not in stop_words and word.isnumeric() == False and word.strip() != "":
             new_sentence.append(
                 re.sub(
                     r"[^a-zA-Z0-9]+",

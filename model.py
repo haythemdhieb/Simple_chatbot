@@ -1,30 +1,24 @@
-import json
-import os, sys
-import numpy as np
+import torch
+import torch.nn as nn
+import sys
+
 sys.path.append("/home/haythem/Desktop/Work/training/chatbot/")
 from utils import preproces_text
 
-with open("intents.json", "r") as file:
-    intents = json.load(file)
 
-all_words = []
-tags = []
-data = []
-for intent in intents["intents"]:
-    tag = intent["tag"]
-    tags.append(tag)
-    for pattern in intent["patterns"]:
-        words_from_sentence = preproces_text(pattern)
-        all_words.extend(words_from_sentence)
-        data.append((words_from_sentence, tag))
-#Create training data
-X_train=[]
-y_train=[]
-for (pattern_sentence,tag) in data:
-    bag=bag_of_words(pattern_sentence,all_words)
-    X_train.append(bag)
-    label=tags.index(tag)
-    y_train.append(label)
+class chatbotmodel(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(chatbotmodel, self).__init__()
+        self.layer1 = nn.Linear(input_size, hidden_size)
+        self.layer2 = nn.Linear(hidden_size, hidden_size)
+        self.layer3 = nn.Linear(hidden_size, num_classes)
+        self.relu = nn.ReLU()
 
-X_train=np.array(X_train)
-y_train=np.array(y_train)
+    def forward(self, x):
+        output = self.layer1(x)
+        output = self.relu(output)
+        output = self.layer2(output)
+        output = self.relu(output)
+        output = self.layer3(output)
+        output = self.relu(output)
+        return output

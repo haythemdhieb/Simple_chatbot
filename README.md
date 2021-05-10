@@ -57,5 +57,5 @@ Have a look at [intents.json](intents.json). We can customize it according to ou
   ]
 }
 ```
-## Customize
-For future improvements, we will use one of BERT'S pretrained models, but the results are quite impressive, we got a loss of `0.0004`.
+## Future improvements
+For future improvements, we will use one of BERT'S pretrained models, but the results are quite impressive, we got a loss of `0.0004` and we might design a freindly user internface or create a web app for this chatbot.

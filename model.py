@@ -12,6 +12,7 @@ class chatbotmodel(nn.Module):
         self.layer1 = nn.Linear(input_size, hidden_size)
         self.layer2 = nn.Linear(hidden_size, hidden_size)
         self.layer3 = nn.Linear(hidden_size, num_classes)
+        self.softmax = nn.Softmax(dim=1)
         self.relu = nn.ReLU()
 
     def forward(self, x):
@@ -20,5 +21,5 @@ class chatbotmodel(nn.Module):
         output = self.layer2(output)
         output = self.relu(output)
         output = self.layer3(output)
-        output = self.relu(output)
+        output = self.softmax(output)
         return output

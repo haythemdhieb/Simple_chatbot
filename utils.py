@@ -5,9 +5,7 @@ from bs4 import BeautifulSoup
 from nltk import word_tokenize, sent_tokenize
 from nltk.stem import LancasterStemmer, WordNetLemmatizer
 
-# nltk.download("punkt")
-# nltk.download("wordnet")
-# nltk.download("stopwords")
+
 stop_words = list(stopwords.words("english"))
 
 

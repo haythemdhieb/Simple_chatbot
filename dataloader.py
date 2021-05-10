@@ -17,8 +17,10 @@ for intent in intents["intents"]:
     tags.append(tag)
     for pattern in intent["patterns"]:
         words_from_sentence = preproces_text(pattern)
-        all_words.extend(words_from_sentence)
-        data.append((words_from_sentence, tag))
+        if words_from_sentence != []:
+            all_words.extend(words_from_sentence)
+            data.append((words_from_sentence, tag))
+
 # Create training data
 X_train = []
 y_train = []

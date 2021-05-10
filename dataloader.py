@@ -21,6 +21,10 @@ for intent in intents["intents"]:
             all_words.extend(words_from_sentence)
             data.append((words_from_sentence, tag))
 
+all_words = mylist = list(dict.fromkeys(all_words))
+all_words = sorted(set(all_words))
+
+tags = sorted(set(tags))
 # Create training data
 X_train = []
 y_train = []

@@ -21,5 +21,4 @@ class chatbotmodel(nn.Module):
         output = self.layer2(output)
         output = self.relu(output)
         output = self.layer3(output)
-        output = self.softmax(output)
         return output

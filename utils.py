@@ -13,16 +13,16 @@ def bag_of_words(sentence, all_words):
     """
     Function that creates the bag of words embeeding vector for a given sentence
     """
-    bag = np.zeros(len(all_words))
-    for (index, word) in enumerate(sentence):
-        if word in all_words:
+    bag = np.zeros(len(all_words), dtype=np.float32)
+    for (index, word) in enumerate(all_words):
+        if word in sentence:
             bag[index] = 1
     return bag
 
 
 def preproces_text(sentence):
     """
-    Function that preprocess input sentence: tokenize, lowwer the words and removes speacial caracters from each sentence
+    Function that preprocess input sentence: tokenize, lowwer the words and removes speacial characters from each sentence
     """
     soup = BeautifulSoup(sentence, "html.parser")
     sentence = soup.get_text()
@@ -33,7 +33,7 @@ def preproces_text(sentence):
     stemmer = LancasterStemmer()
     new_sentence = []
     for word in sentence:
-        if word.lower() not in stop_words and word.isnumeric() == False and word.strip() != "":
+        if word.isnumeric() == False and word.strip() != "":
             new_sentence.append(
                 re.sub(
                     r"[^a-zA-Z0-9]+",
